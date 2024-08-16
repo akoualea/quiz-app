@@ -71,7 +71,36 @@
     transition: 0.5s;
     padding-top: 10px;
     border-radius: 5px;
+    text-align: center;
+
 }
+        
+   .btn { padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    color:violet;
+    border-radius: 15px;
+    right: 50%;
+    margin-bottom:5rem;
+    
+}
+.btns {
+    width: 100%;
+    display: flexbox;
+ 
+}
+.answer-buttons { 
+
+}
+.btn12{
+    display: block;
+    unicode-bidi: isolate;
+}
+.btn{
+    width: 30%; 
+}
+    
+        
 
 
 
@@ -84,7 +113,18 @@
            <div id="question-text"></div>
             <div id="options"></div>
             <div id="score">Score:0</div>
-            <div id="answer-buttons"></div>
+            <div id="answer-buttons">
+                <div class="btns">
+                    <div class="btn12">
+                <button class="btn">answer 1</button>
+                <button class="btn">answer 2</button>
+                   </div>
+                <div class="btn34">   
+                <button class="btn">answer 3</button>
+                <button class="btn">answer 4</button>
+                </div>
+                </div>
+            </div>
         
             <button id="next-button" onclick="nextQuestion()">Next</button>
             <button id="retry-button"  onclick="retryQuiz()">Retry</button>
