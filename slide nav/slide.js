@@ -7,77 +7,103 @@ function closeNav() {
     document.getElementById("sidebar").style.width = "0"; // Fermez le menu
     document.getElementById("main").style.marginLeft = "0"; // Réinitialisez la marge
 }
+const questions = {
+    easy: [
+        { question: "Quel mot-clé est utilisé pour déclarer une variable en JavaScript?", options: ["var", "int", "string", "float"], correctAnswer: 0 },
+        { question: "Quelle méthode est utilisée pour écrire dans la console du navigateur?", options: ["console.log()", "print()", "echo()", "write()"], correctAnswer: 0 },
+        { question: "Comment créer une fonction en JavaScript?", options: ["function myFunction()", "def myFunction()", "create function myFunction()", "function:myFunction()"], correctAnswer: 0 },
+        { question: "Quel symbole est utilisé pour les commentaires sur une seule ligne en JavaScript?", options: ["//", "/* */", "<!-- -->", "#"], correctAnswer: 0 },
+        { question: "Comment ajouter un élément à la fin d'un tableau en JavaScript?", options: ["push()", "pop()", "shift()", "unshift()"], correctAnswer: 0 },
+    ],
+    medium: [
+        { question: "Quel est le type de 'null' en JavaScript?", options: ["object", "null", "undefined", "number"], correctAnswer: 0 },
+        { question: "Quelle est la sortie de typeof NaN?", options: ["number", "NaN", "undefined", "object"], correctAnswer: 0 },
+        { question: "Comment peut-on ajouter un élément au début d'un tableau?", options: ["unshift()", "shift()", "push()", "pop()"], correctAnswer: 0 },
+        { question: "Quelle est la sortie de '1' - 1?", options: ["0", "1", "NaN", "'11'"], correctAnswer: 0 },
+        { question: "Que renvoie '2' * '3' en JavaScript?", options: ["6", "'23'", "5", "NaN"], correctAnswer: 0 },
+    ],
+    difficult: [
+        { question: "Quel est le résultat de [] + [] en JavaScript?", options: ["''", "NaN", "undefined", "[]"], correctAnswer: 0 },
+        { question: "Quelle est la sortie de '2' - -'2' en JavaScript?", options: ["4", "NaN", "0", "Erreur"], correctAnswer: 0 },
+        { question: "Que renvoie la méthode Object.is(NaN, NaN) ?", options: ["true", "false", "undefined", "null"], correctAnswer: 0 },
+        { question: "Comment déclarer une fonction auto-exécutée en JavaScript?", options: ["(function(){})()", "function(){}", "function()(){}", "()function{}"], correctAnswer: 0 },
+        { question: "Quel est le résultat de '5' - 2 en JavaScript?", options: ["3", "52", "NaN", "Erreur"], correctAnswer: 0 },
+    ]
+};
 
-
+// Combine les questions faciles, moyennes et difficiles pour atteindre au moins 50 questions
+const allQuestions = [...questions.easy, ...questions.medium, ...questions.difficult];
 
 let currentQuestionIndex = 0;
+let selectedDifficulty;
+let selectedAmount;
 let score = 0;
-const questions = [ 
- {question:"What is the bloodiest event in United States history, in terms of casualties?", option:["battle of Antietam", "september 11th", "D-Day","Pearl Harbor"], correct: "b" } 
- 
-     
-
-     
-
-    // Ajoutez des questions ici avec la structure suivante
-    // { question: "Texte de la question", options: ["Option 1", "Option 2"], correct: "Option 1" }
-
-    
-];
 
 function startQuiz() {
-    document.getElementById('home-page').style.display = '';
-    document.getElementById('quiz-page').style.display = 'block';
-    loadQuestion();
+    selectedDifficulty = document.getElementById('difficulty').value;
+    selectedAmount = parseInt(document.getElementById('amount').value);
+    currentQuestionIndex = 0;
+    score = 0;
+    document.getElementById('next-button').style.display = 'none';
+    document.getElementById('retry-button').style.display = 'none';
+    showQuestion();
 }
 
-function loadQuestion() {
-    const question = questions[currentQuestionIndex];
-    document.getElementById('question-number').innerText = `Question ${currentQuestionIndex + 1} / ${questions.length}`;
-    document.getElementById('question-text').innerText = question.question;
-    const optionsDiv = document.getElementById('options');
+function showQuestion() {
+    const currentQuestion = allQuestions[currentQuestionIndex];
+    document.getElementById('question-number').innerText = `Question ${currentQuestionIndex + 1} of ${selectedAmount}`;
+    document.getElementById('question-text').innerText = currentQuestion.question;
+
+    const optionsDiv = document.getElementById('amount');
     optionsDiv.innerHTML = '';
-    question.options.forEach(option => {
+
+    currentQuestion.options.forEach((option, index) => {
         const button = document.createElement('button');
+        button.className = 'btn';
         button.innerText = option;
-        button.onclick = () => checkAnswer(option);
+        button.onclick = () => selectAnswer(index, button);
         optionsDiv.appendChild(button);
     });
 }
 
-function checkAnswer(selectedOption) {
-    const question = questions[currentQuestionIndex];
-    if (selectedOption === question.correct) {
-        score += 2; // Incrementer le score
-    }
-    if (currentQuestionIndex < questions.length - 1) {
-        currentQuestionIndex++;
-        loadQuestion();
+function selectAnswer(selectedOption, button) {
+    const currentQuestion = allQuestions[currentQuestionIndex];
+    const options = document.querySelectorAll('#amount .btn');
+
+    if (selectedOption === currentQuestion.correctAnswer) {
+        button.style.backgroundColor = 'green';
+        score += 1;  // Le score augmente d'un point
     } else {
-        endQuiz();
+        button.style.backgroundColor = 'red';
+        options[currentQuestion.correctAnswer].style.backgroundColor = 'green';
     }
-    document.getElementById('score').innerText = `Score: ${score}`;
+
+    options.forEach(btn => btn.disabled = true);
+    document.getElementById('next-button').style.display = 'block';
 }
 
 function nextQuestion() {
-    if (currentQuestionIndex < questions.length - 1) {
-        currentQuestionIndex++;
-        loadQuestion();
+    currentQuestionIndex++;
+
+    if (currentQuestionIndex < selectedAmount && currentQuestionIndex < allQuestions.length) {
+        showQuestion();
+        document.getElementById('next-button').style.display = 'none';
     } else {
-        endQuiz();
+        showResults();
     }
 }
 
-function endQuiz() {
-    document.getElementById('quiz-container').innerHTML = `
-        <div>Your final score is ${score}</div>
-        <button id="retry-button" onclick="retryQuiz()">Retry</button>
-    `;
+function showResults() {
+    document.getElementById('quiz-container').innerHTML = `<h2>Your Score: ${score}</h2>`;
+    document.getElementById('retry-button').style.display = 'block';
 }
 
 function retryQuiz() {
-    currentQuestionIndex = 0;
-    score = 0;
-    document.getElementById('quiz-page').style.display = 'none';
-    document.getElementById('home-page').style.display = 'block';
+    startQuiz();
 }
+
+// Ajouter un événement de clic pour démarrer le quiz
+document.querySelector('.start-button').addEventListener('click', startQuiz);
+
+
+console.log(currentQuestion);
