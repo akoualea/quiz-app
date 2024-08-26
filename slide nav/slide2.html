@@ -7,9 +7,14 @@
     <title>page des questions</title>
     <style>
         body{
-        text-align: center;
+            text-align: center;
+            
+    background-image: url('bg.avif'); /* Spécifie le chemin vers l'image */
+    background-repeat: no-repeat; /* Empêche l'image de se répéter */
+    background-size: cover; /* Ajuste la taille de l'image pour couvrir tout l'élément */
         }
-        question-number{
+        
+         question-number{
     background: #fff;
     width: 90%;
     max-width: 600px;
@@ -20,17 +25,18 @@
 .page question-number {
     
     font-size: 25px;
-    color:#001e4d;
+    
     font-weight: 600;
-    border-bottom: 30px;
+    border-bottom: 50px;
 }
 #next-button, #retry-button {
+    display: block; /* Assure que les boutons sont affichés en bloc */
+    margin: 10px auto; /* Centre les boutons horizontalement avec une marge automatique */
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    color:violet;
+    color: violet;
     border-radius: 15px;
-    right: 50%;
     
 }
     #score {
@@ -40,6 +46,13 @@
     border-radius: 2px;
     margin-top: 6rem;
 }
+#quiz-end-message {
+    font-size: 20px;
+    margin-top: 10rem; /* Espace au-dessus du message de fin de quiz */
+    color: violet;
+    padding-bottom: 5rem;
+    display: none; /* Masquer le message par défaut */
+}
 #question-text {
     font-size: 18px;
     margin-bottom: 20px;
@@ -47,23 +60,25 @@
 }
 
 
+
+
 .question-number{
     margin-top: 08rem;
+    color:violet;
+    
 }
 .page{
     border-radius: 5px;
-    background-color: #007acc;
+    
     width: 70%;
     top: 50%;
     left: 50%;
-    height: 70% ;
+    height:90% ;
     transition: 0.5s;
     padding-top: 10px;
     border-radius: 5px;
-    text-align: center;
-
 }
-        
+
    .btn { padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
@@ -84,42 +99,96 @@
     unicode-bidi: isolate;
 }
 .btn{
-    width: 30%; 
+    width: 40%; 
 }
+#answer-buttons {
     
-        
+    flex-wrap: wrap; /* Permet aux boutons de passer à la ligne suivante si nécessaire */
+    justify-content: center; /* Centre les boutons horizontalement */
+    gap: 25px; /* Ajoute un espacement entre les boutons */
+    color: black;
+    border-radius: 15px;
+    border-color: black;
+    
+} 
 
+.btn {
+    flex: 1 1 45%; /* Chaque bouton prend 45% de la largeur du conteneur, s'ajustant selon l'espace disponible */
+    margin: 10px; /* Ajoute un peu d'espace autour de chaque bouton */
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    color: black;
+    border-radius: 15px;
+    text-align: center; /* Centre le texte à l'intérieur des boutons */
+    border: 2px solid violet; /* Ajoute une bordure pour rendre les boutons plus visibles */
+    border-color: black;
+    
+}
+
+  
+  
+  
+  body {
+    display: flex;
+    flex-direction: column; /* Dispose les éléments en colonne */
+    justify-content: center; /* Centre les éléments verticalement */
+    align-items: center; /* Centre les éléments horizontalement */
+    height: 100vh; /* Assure que le body prend toute la hauteur de la fenêtre */
+    margin: 0; /* Retire les marges par défaut */
+    padding: 0; /* Retire les paddings par défaut */
+    text-align: center; /* Centre le texte */
+    background-color: #f0f0f0; /* Couleur de fond (modifiable) */
+}
+
+.page {
+    width: 80%; /* Largeur du contenu */
+    max-width: 600px; /* Largeur maximale */
+    background-color: #fff; /* Couleur de fond de la page */
+    border-radius: 10px; /* Bords arrondis */
+    padding: 20px; /* Espacement interne */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre pour donner un effet de profondeur */
+}
+
+
+    
+
+
+/* Style pour les réponses correctes */
+.correct {
+    background-color: #28a745; /* Vert */
+}    
+
+/* Style pour les réponses incorrectes */
+.incorrect {
+    background-color: #dc3545; /* Rouge */
+}
 
 
     </style>
 </head>
 <body>
 <div id="quiz-page" class="page"  >
-    <div id="quiz-container">
-        <div id="question-number">Questions</div>
+    <div id="quiz-container"><br>
+
+        <div id="question-number">Question:nº  </div><br>
            <div id="question-text"></div>
             <div id="options"></div>
             <div id="score">Score:0</div>
             <div id="answer-buttons">
-                <div class="btns">
-                    <div class="btn12">
-                <button class="btn">answer 1</button>
-                <button class="btn">answer 2</button>
-                   </div>
-                <div class="btn34">   
-                <button class="btn">answer 3</button>
-                <button class="btn">answer 4</button>
-                </div>
-                </div>
+                
             </div>
+            <div id="quiz-end-message">Quiz terminé! Votre score est</div> <!-- Élément pour le message de fin de quiz -->
+
+            
         
-            <button id="next-button" onclick="nextQuestion()">Next</button>
+            <button id="next-button" onclick="nextQuestion()">Next question</button>
             <button id="retry-button"  onclick="retryQuiz()">Retry</button>
     </div>
 </div>
 
 
-  <script src="slide.js"></script>
+<script src="slide.js"></script>
     
 </body>
 </html>
