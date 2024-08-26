@@ -4,7 +4,6 @@ body {
     transition: margin-left .5s;
     padding: 0;
     margin: 0;
-    background-image: url(''); /* Assurez-vous que le nom de l'image est correct */
     background-repeat: no-repeat; /* Empêche l'image de se répéter */
     background-size: cover; /* Ajuste la taille de l'image pour couvrir tout l'élément */
     display: flex; /* Utilise Flexbox pour centrer les éléments */
@@ -159,7 +158,7 @@ select{
 body{
 
     
-background-image: url('bg.avif'); /* Spécifie le chemin vers l'image */
+background-image: url('https://github.com/akoualea/quiz-app/blob/main/bg.avif'); /* Spécifie le chemin vers l'image */
 background-repeat: no-repeat; /* Empêche l'image de se répéter */
 background-size: cover; /* Ajuste la taille de l'image pour couvrir tout l'élément */
 }
