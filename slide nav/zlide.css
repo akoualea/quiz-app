@@ -4,8 +4,7 @@ body {
     transition: margin-left .5s;
     padding: 0;
     margin: 0;
-    background-repeat: no-repeat; /* Empêche l'image de se répéter */
-    background-size: cover; /* Ajuste la taille de l'image pour couvrir tout l'élément */
+  
     display: flex; /* Utilise Flexbox pour centrer les éléments */
     justify-content: center; /* Centre horizontalement */
     align-items: center; /* Centre verticalement */
@@ -158,7 +157,7 @@ select{
 body{
 
     
-background-image: url('https://github.com/akoualea/quiz-app/raw/main/slide%20nav/bg.avif'); /* Spécifie le chemin vers l'image */
+background-image: url('bg.avif'); /* Spécifie le chemin vers l'image */
 background-repeat: no-repeat; /* Empêche l'image de se répéter */
 background-size: cover; /* Ajuste la taille de l'image pour couvrir tout l'élément */
 }
