@@ -6,10 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>page des questions</title>
     <style>
-        body{
+   
+    
+
+      
+      
+      body{
             text-align: center;
             
-    background-image: url('bg.avif'); /* Spécifie le chemin vers l'image */
+    background-image: url('image_sap1.jpg'); /* Spécifie le chemin vers l'image */
     background-repeat: no-repeat; /* Empêche l'image de se répéter */
     background-size: cover; /* Ajuste la taille de l'image pour couvrir tout l'élément */
         }
@@ -31,12 +36,14 @@
 }
 #next-button, #retry-button {
     display: block; /* Assure que les boutons sont affichés en bloc */
-    margin: 10px auto; /* Centre les boutons horizontalement avec une marge automatique */
+    margin: 2rem auto; /* Centre les boutons horizontalement avec une marge automatique */
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
     color: violet;
     border-radius: 15px;
+    margin-bottom: 1rem;
+    
     
 }
     #score {
@@ -44,7 +51,8 @@
     margin-bottom: 12rem;
     color: violet;
     border-radius: 2px;
-    margin-top: 6rem;
+    
+    margin-bottom: 1rem;
 }
 #quiz-end-message {
     font-size: 20px;
@@ -59,7 +67,15 @@
     color: violet;
 }
 
-
+.btn { padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    color:violet;
+    border-radius: 15px;
+    right: 50%;
+    margin-bottom:5rem;
+    
+}
 
 
 .question-number{
@@ -69,38 +85,28 @@
 }
 .page{
     border-radius: 5px;
-    
-    width: 70%;
+     width: 70%;
     top: 50%;
     left: 50%;
     height:90% ;
     transition: 0.5s;
     padding-top: 10px;
     border-radius: 5px;
-}
-
-   .btn { padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    color:violet;
-    border-radius: 15px;
-    right: 50%;
-    margin-bottom:5rem;
     
 }
+
+  
 .btns {
-    width: 100%;
+   
     display: flexbox;
  
 }
 
-.btn12{
-    display: block;
-    unicode-bidi: isolate;
-}
+
 .btn{
     width: 40%; 
-}
+    height: 2rem;
+}   
 #answer-buttons {
     
     flex-wrap: wrap; /* Permet aux boutons de passer à la ligne suivante si nécessaire */
@@ -113,7 +119,7 @@
 } 
 
 .btn {
-    flex: 1 1 45%; /* Chaque bouton prend 45% de la largeur du conteneur, s'ajustant selon l'espace disponible */
+    flex: 1 1 55%; /* Chaque bouton prend 45% de la largeur du conteneur, s'ajustant selon l'espace disponible */
     margin: 10px; /* Ajoute un peu d'espace autour de chaque bouton */
     padding: 10px 20px;
     font-size: 16px;
@@ -123,7 +129,7 @@
     text-align: center; /* Centre le texte à l'intérieur des boutons */
     border: 2px solid violet; /* Ajoute une bordure pour rendre les boutons plus visibles */
     border-color: black;
-    
+    display: none;
 }
 
   
@@ -134,7 +140,7 @@
     flex-direction: column; /* Dispose les éléments en colonne */
     justify-content: center; /* Centre les éléments verticalement */
     align-items: center; /* Centre les éléments horizontalement */
-    height: 100vh; /* Assure que le body prend toute la hauteur de la fenêtre */
+    height: 70vh; /* Assure que le body prend toute la hauteur de la fenêtre */
     margin: 0; /* Retire les marges par défaut */
     padding: 0; /* Retire les paddings par défaut */
     text-align: center; /* Centre le texte */
@@ -142,12 +148,13 @@
 }
 
 .page {
-    width: 80%; /* Largeur du contenu */
+    width: 50%; /* Largeur du contenu */
     max-width: 600px; /* Largeur maximale */
     background-color: #fff; /* Couleur de fond de la page */
     border-radius: 10px; /* Bords arrondis */
-    padding: 20px; /* Espacement interne */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre pour donner un effet de profondeur */
+    
+    
 }
 
 
@@ -164,6 +171,29 @@
     background-color: #dc3545; /* Rouge */
 }
 
+/* Ajustement des boutons pour les petits écrans */
+#options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px; /* Espace entre les boutons */
+}
+
+#options button {
+    flex: 1 1 calc(50% - 20px); /* Permet aux boutons de prendre la moitié de la largeur disponible avec un espace */
+    margin: 5px;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 10px;
+}
+
+/* Style pour les petits écrans */
+@media (max-width: 600px) {
+    #options button {
+        flex: 1 1 100%; /* Les boutons prennent toute la largeur disponible */
+    }
+}
+
 
     </style>
 </head>
@@ -171,21 +201,22 @@
 <div id="quiz-page" class="page"  >
     <div id="quiz-container"><br>
 
-        <div id="question-number">Question:nº  </div><br>
+        <div id="question-number"> </div><br>
            <div id="question-text"></div>
             <div id="options"></div>
             <div id="score">Score:0</div>
             <div id="answer-buttons">
-                
-            </div>
-            <div id="quiz-end-message">Quiz terminé! Votre score est</div> <!-- Élément pour le message de fin de quiz -->
-
-            
+            <button class="btn"></BUtton>
+            <button class="btn"></BUtton>
+           <button class="btn"></BUtton>
+           <button class="btn"></BUtton>
+           
+           
         
             <button id="next-button" onclick="nextQuestion()">Next question</button>
             <button id="retry-button"  onclick="retryQuiz()">Retry</button>
-    </div>
-</div>
+        </div>
+   </div>
 
 
 <script src="slide.js"></script>
