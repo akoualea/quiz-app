@@ -49,7 +49,7 @@ window.onload = function() {
                 { question: "Comment vérifier si un élément existe dans un tableau en JavaScript ?", options: [ "contains()",  "indexOf()","exists()", "find()"], answer: "indexOf()" },
                 { question: "Quelle méthode est utilisée pour joindre tous les éléments d'un tableau en une seule chaîne en JavaScript ?", options: [ "concat()", "merge()",  "join()","combine()"], answer: "join()" },
                 { question: "Quel est le résultat de typeof 123 en JavaScript ?", options: [ "boolean","number", "string", "object", ], answer: "number" },
-                { question: "Comment créer une fonction anonyme en JavaScript ?", options: [ "() => {}","function() {}", "function() ", "function() ={}"], answer: "() => {}" },
+                { question: "Comment créer une fonction anonyme en JavaScript ?", options: [ "() => {}","function() {}", "function() {}", "function() ={}"], answer: "() => {}" },
                 { question: "Comment vérifier si un tableau est vide en JavaScript ?", options: ["array.length === 01", "array.isEmpty(0)", "array.length == 0", "array.isEmpty()"], answer: "array.length === 0" },
                 { question: "Quel est le résultat de 3 == '3' en JavaScript ?", options: ["true", "false", "undefined", "NaN"], answer: "true" },
                 { question: "Comment accéder à la première valeur d'un tableau en JavaScript ?", options: ["array[0]", "array.first()", "array[1]", "array.start()"], answer: "array[0]" },
@@ -201,7 +201,7 @@ window.onload = function() {
             ],
         };
 // Fonction pour charger les questions
-function loadQuestions(amount, difficulty) {
+    function loadQuestions(amount, difficulty) {
     const questionContainer = document.getElementById('question-text');
     const optionsContainer = document.getElementById('options');
     const scoreElement = document.getElementById('score');
@@ -223,15 +223,17 @@ function loadQuestions(amount, difficulty) {
 
     // Cacher le bouton Retry au début
     retryButton.style.display = 'none';
-
+   //   affichage des questions 
     function showQuestion() {
         const question = selected[currentQuestionIndex];
         questionContainer.innerHTML = question.question;
 
         optionsContainer.innerHTML = '';
         question.options.forEach(option => {
+            //creation du bouton 
             const button = document.createElement('button');
             button.innerText = option;
+            // ajouter la classe btn
             button.classList.add('btn');
             button.addEventListener('click', () => handleAnswer(option));
             optionsContainer.appendChild(button);
@@ -246,7 +248,7 @@ function loadQuestions(amount, difficulty) {
     });
 
 
-
+      
         // Mettre à jour le numéro de la question
         questionNumberElement.innerHTML = `Question ${currentQuestionIndex + 1} / ${selected.length}`;
         nextButton.style.display = 'none'; // Cacher le bouton "Next" jusqu'à ce qu'une réponse soit sélectionnée
@@ -302,4 +304,3 @@ window.onload = function() {
 
     loadQuestions(parseInt(amount), difficulty);
 };
-
