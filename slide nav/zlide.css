@@ -4,7 +4,9 @@ body {
     transition: margin-left .5s;
     padding: 0;
     margin: 0;
-  
+    background-image: url(''); /* Assurez-vous que le nom de l'image est correct */
+    background-repeat: no-repeat; /* Empêche l'image de se répéter */
+    background-size: cover; /* Ajuste la taille de l'image pour couvrir tout l'élément */
     display: flex; /* Utilise Flexbox pour centrer les éléments */
     justify-content: center; /* Centre horizontalement */
     align-items: center; /* Centre verticalement */
@@ -23,6 +25,7 @@ body {
     text-align: center;
     width: auto; /* Ajuste la largeur du bouton automatiquement */
     margin: 20px; /* Ajoute un espace autour du bouton */
+    
 }
 
 .openbtn {
@@ -38,6 +41,8 @@ body {
     top: 10%; /* Ajustez selon la position désirée */
     left: 50%;
     transform: translateX(-50%); /* Centre horizontalement */
+
+    margin-top: 11rem;
 }
 
 .sidebar {
@@ -128,18 +133,8 @@ select{
     cursor: pointer;
 }
 
-#score {
-    font-size: 18px;
-    margin-bottom: 20px;
-    color: violet;
-}
 
-#next-button, #retry-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    color:violet;
-}.app{
+.app{
     background: #fff;
     width: 90%;
     max-width: 600px;
@@ -157,7 +152,7 @@ select{
 body{
 
     
-background-image: url('bg.avif'); /* Spécifie le chemin vers l'image */
+background-image: url('image_sap1.jpg'); /* Spécifie le chemin vers l'image */
 background-repeat: no-repeat; /* Empêche l'image de se répéter */
 background-size: cover; /* Ajuste la taille de l'image pour couvrir tout l'élément */
 }
